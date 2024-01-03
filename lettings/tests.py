@@ -1,4 +1,4 @@
-from django.test import TestCase, Client
+from django.test import TestCase
 from django.urls import reverse_lazy
 from lettings.models import Address, Letting
 
@@ -94,20 +94,60 @@ class TestLettingsModels(BaseTestCase):
     Lettings models test class.
     """
 
-    def test_address_str(self):
+    def test_create_address(self):
         """
-        Calling str method on Address return its number and street.
+        The Address object created is correctly registered in the
+        database and its str method returns the expected value.
         """
+        address_count = Address.objects.count()
+        address = Address.objects.create(
+            number=9606,
+            street='Harvard Street',
+            city='Aliquippa',
+            state='PA',
+            zip_code=15001,
+            country_iso_code='USA'
+        )
         self.assertEqual(
-            str(self.address),
-            f'{self.address.number} {self.address.street}'
+            Address.objects.count(),
+            address_count + 1
+        )
+        self.assertEqual(
+            Address.objects.last(),
+            address
+        )
+        self.assertEqual(
+            str(address),
+            f'{address.number} {address.street}'
         )
 
-    def test_letting_str(self):
+    def test_create_letting(self):
         """
-        Calling str method on Letting return its title.
+        The Letting object created is correctly registered in the
+        database and its str method returns the expected value.
         """
+        letting_count = Letting.objects.count()
+        address = Address.objects.create(
+            number=9606,
+            street='Harvard Street',
+            city='Aliquippa',
+            state='PA',
+            zip_code=15001,
+            country_iso_code='USA'
+        )
+        letting = Letting.objects.create(
+            title='The Mushroom Dome Retreat & LAND of Paradise Suite',
+            address=address
+        )
         self.assertEqual(
-            str(self.letting),
-            self.letting.title
+            Letting.objects.count(),
+            letting_count + 1
+        )
+        self.assertEqual(
+            Letting.objects.last(),
+            letting
+        )
+        self.assertEqual(
+            str(letting),
+            letting.title
         )

@@ -89,11 +89,28 @@ class TestProfilesModels(BaseTestCase):
     Lettings models test class.
     """
 
-    def test_profile_str(self):
+    def test_create_profile(self):
         """
-        Calling str method on Profile return its user username.
+        The Profile object created is correctly registered in the
+        database and its str method returns the expected value.
         """
+        profile_count = Profile.objects.count()
+        user = User.objects.create_user(
+            username='test_user'
+        )
+        profile = Profile.objects.create(
+            user=user,
+            favorite_city='test_favorite_city'
+        )
         self.assertEqual(
-            str(self.profile),
-            f'{self.profile.user.username}'
+            Profile.objects.count(),
+            profile_count + 1
+        )
+        self.assertEqual(
+            Profile.objects.last(),
+            profile
+        )
+        self.assertEqual(
+            str(profile),
+            f'{profile.user.username}'
         )

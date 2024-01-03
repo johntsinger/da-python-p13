@@ -34,9 +34,9 @@ class BaseTestCase(TestCase):
 
 
 @override_settings(ROOT_URLCONF=__name__)
-class TestOcLettingsSiteViews(BaseTestCase):
+class TestOCLettingsSiteViews(BaseTestCase):
     """
-    Oc_lettings_site views test class.
+    OC_lettings_site views test class.
     """
     url = reverse_lazy('index')
     url_404 = reverse_lazy('test_404')

@@ -7,7 +7,17 @@ from profiles.models import Profile
 # Fusc faucibus, urna quis auctor pharetra, massa dolor cursus neque,
 # quis dictum lacus d
 def index(request):
-    """Profiles list view"""
+    """
+    Profiles list view.
+
+    Params:
+        - request (HttpRequest) : Django request object.
+
+    Returns:
+        - render (func) : Combines a given template with a given
+        context dictionary and returns an HttpResponse object with
+        that rendered text.
+    """
     profiles_list = Profile.objects.all()
     context = {'profiles_list': profiles_list}
     return render(request, 'profiles/index.html', context)
@@ -21,7 +31,18 @@ def index(request):
 # Nam aliquam dignissim congue.
 # Pellentesque habitant morbi tristique senectus et netus et males
 def profile(request, username):
-    """Profiles detail view"""
+    """
+    Profiles detail view
+
+    Params:
+        - request (HttpRequest) : Django request object.
+        - username (str) : the username linked to the profile.
+
+    Returns:
+        - render (func) : Combines a given template with a given
+        context dictionary and returns an HttpResponse object with
+        that rendered text.
+    """
     profile = Profile.objects.get(user__username=username)
     context = {'profile': profile}
     return render(request, 'profiles/profile.html', context)

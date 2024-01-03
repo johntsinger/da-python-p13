@@ -38,7 +38,7 @@ class Address(models.Model):
         verbose_name_plural = 'addresses'
 
     def __str__(self):
-        """String representation of the model"""
+        """String representation of the model."""
         return f'{self.number} {self.street}'
 
 
@@ -53,5 +53,5 @@ class Letting(models.Model):
     )
 
     def __str__(self):
-        """String representation of the model"""
+        """String representation of the model."""
         return self.title

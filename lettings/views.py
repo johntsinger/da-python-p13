@@ -8,7 +8,17 @@ from lettings.models import Letting
 # Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
 # posuere cubilia curae; Cras eget scelerisque
 def index(request):
-    """Lettings list view"""
+    """
+    Lettings list view.
+
+    Params:
+        - request (HttpRequest) : Django request object.
+
+    Returns:
+        - render (func) : Combines a given template with a given
+        context dictionary and returns an HttpResponse object with
+        that rendered text.
+    """
     lettings_list = Letting.objects.all()
     context = {'lettings_list': lettings_list}
     return render(request, 'lettings/index.html', context)
@@ -31,7 +41,18 @@ def index(request):
 # Donec quis nisi ligula.
 # Integer vehicula tincidunt enim, ac lacinia augue pulvinar sit amet.
 def letting(request, letting_id):
-    """Lettings detail view"""
+    """
+    Lettings detail view
+
+    Params:
+        - request (HttpRequest) : Django request object.
+        - letting_id (str) : the letting id.
+
+    Returns:
+        - render (func) : Combines a given template with a given
+        context dictionary and returns an HttpResponse object with
+        that rendered text.
+    """
     letting = Letting.objects.get(id=letting_id)
     context = {
         'title': letting.title,

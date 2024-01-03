@@ -3,6 +3,7 @@ from django.core.validators import MaxValueValidator, MinLengthValidator
 
 
 class Address(models.Model):
+    """Address model."""
     number = models.PositiveIntegerField(
         validators=[
             MaxValueValidator(9999),
@@ -32,11 +33,17 @@ class Address(models.Model):
         ]
     )
 
+    class Meta:
+        # plural verbose name
+        verbose_name_plural = 'addresses'
+
     def __str__(self):
+        """String representation of the model"""
         return f'{self.number} {self.street}'
 
 
 class Letting(models.Model):
+    """Letting model."""
     title = models.CharField(
         max_length=256
     )
@@ -46,4 +53,5 @@ class Letting(models.Model):
     )
 
     def __str__(self):
+        """String representation of the model"""
         return self.title

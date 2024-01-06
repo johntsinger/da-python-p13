@@ -1,5 +1,10 @@
 import os
+import sys
 from pathlib import Path
+from dotenv import load_dotenv, set_key
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+from django.core.management.utils import get_random_secret_key
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -9,14 +14,24 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
-# Testing status.
-TESTING = False
+load_dotenv(BASE_DIR / '.env')
+
+ENV = os.environ.get('ENV', 'prod')
+
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'fp$9^593hsriajg$_%=5trot9g!1qa@ew(o-1#@=&4%=hp46(s'
+# SECRET_KEY can be found in .env file
+SECRET_KEY = os.environ.get(
+    'DJANGO_SECRET_KEY',
+    None
+) or set_key(
+    '.env',
+    'DJANGO_SECRET_KEY',
+    get_random_secret_key()
+)[-1]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = False if ENV == 'prod' else True
 
 ALLOWED_HOSTS = ['127.0.0.1']
 
@@ -117,3 +132,27 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static", ]
+
+# Logging config
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'sentry': {
+            'level': 'ERROR',
+            'class': 'sentry_sdk.integrations.logging.EventHandler',
+        },
+    },
+    'root': {
+        'handlers': ['sentry'],
+        'level': 'DEBUG',
+    },
+}
+
+# Sentry init
+if ENV == 'prod':
+    sentry_sdk.init(
+        dsn=os.environ.get('SENTRY_DSN'),
+        enable_tracing=True,
+        integrations=[DjangoIntegration()]
+    )

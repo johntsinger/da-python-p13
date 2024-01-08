@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.urls import reverse_lazy
 from django.contrib.auth import get_user_model
 from profiles.models import Profile
@@ -7,6 +7,9 @@ from profiles.models import Profile
 User = get_user_model()
 
 
+# overide WHITENOISE_AUTOREFRESH to avoid getting warnings about
+# 'No directory at {}' for STATIC_ROOT directory
+@override_settings(WHITENOISE_AUTOREFRESH=True)
 class BaseTestCase(TestCase):
     """
     Custom TestCase class with fixtures.

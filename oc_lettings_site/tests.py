@@ -4,22 +4,21 @@ from django.conf import settings
 from django.test.utils import override_settings
 from oc_lettings_site import views
 from oc_lettings_site.urls import urlpatterns as all_urls
-
-
-def view_trigger_error_500(request):
-    """Fake view to trigger 500 error."""
-    return 1 / 0
+from oc_lettings_site.urls import trigger_error
 
 
 # Add test urls to test custom_404, custom_500 and
-# view_trigger_error_500 view.
+# trigger_error view.
 urlpatterns = all_urls + [
     path('test/404/', views.custom_404, name='test_404'),
     path('test/500/', views.custom_500, name='test_500'),
-    path('test/trigger_500', view_trigger_error_500, name='test_trigegr_500')
+    path('test/trigger_500', trigger_error, name='test_trigegr_500')
 ]
 
 
+# overide WHITENOISE_AUTOREFRESH to avoid getting warnings about
+# 'No directory at {}' for STATIC_ROOT directory
+@override_settings(WHITENOISE_AUTOREFRESH=True)
 class BaseTestCase(TestCase):
     """
     Custom TestCase class with fixtures.

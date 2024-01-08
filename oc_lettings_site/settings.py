@@ -1,5 +1,4 @@
 import os
-import sys
 from pathlib import Path
 from dotenv import load_dotenv, set_key
 import sentry_sdk
@@ -20,7 +19,6 @@ ENV = os.environ.get('ENV', 'prod')
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY can be found in .env file
 SECRET_KEY = os.environ.get(
     'DJANGO_SECRET_KEY',
     None

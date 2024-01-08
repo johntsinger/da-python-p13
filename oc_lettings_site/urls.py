@@ -5,7 +5,7 @@ from oc_lettings_site import views
 
 def trigger_error(request):
     """Make sure that Sentry is working"""
-    division_by_zero = 1 / 0
+    1 / 0
 
 
 handler404 = 'oc_lettings_site.views.custom_404'

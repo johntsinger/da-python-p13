@@ -56,6 +56,10 @@ jobs:
           context: .
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/oc_lettings:${{ github.sha }},${{ secrets.DOCKERHUB_USERNAME }}/oc_lettings:latest
+          secrets: |
+            DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY}}
+            SENTRY_DSN=${{ secrets.SENTRY_DSN }}
+            
   deploy:
     needs: docker
     runs-on: ubuntu-latest

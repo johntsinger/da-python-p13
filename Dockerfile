@@ -16,6 +16,8 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
+RUN python -m pip install --upgrade pip
+
 # Create a non-privileged user that the app will run under.
 # See https://docs.docker.com/go/dockerfile-user-best-practices/
 ARG UID=10001

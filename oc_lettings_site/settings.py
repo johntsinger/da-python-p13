@@ -32,6 +32,9 @@ SECRET_KEY = os.environ.get(
 DEBUG = False if ENV == 'prod' else True
 
 ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', 'localhost']
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 
 # Application definition

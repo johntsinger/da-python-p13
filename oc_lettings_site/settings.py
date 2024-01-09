@@ -1,9 +1,8 @@
 import os
 from pathlib import Path
-from dotenv import load_dotenv, set_key
+from dotenv import load_dotenv
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
-from django.core.management.utils import get_random_secret_key
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)

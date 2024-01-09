@@ -15,21 +15,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 load_dotenv(BASE_DIR / '.env')
 
-ENV = os.environ.get('ENV', 'prod')
-
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get(
-    'DJANGO_SECRET_KEY',
-    None
-) or set_key(
-    '.env',
-    'DJANGO_SECRET_KEY',
-    get_random_secret_key()
-)[-1]
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False if ENV == 'prod' else True
+DEBUG = 'RENDER' not in os.environ
 
 ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', 'localhost']
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
@@ -153,7 +144,7 @@ LOGGING = {
 }
 
 # Sentry init
-if ENV == 'prod':
+if DEBUG is False:
     sentry_sdk.init(
         dsn=os.environ.get('SENTRY_DSN'),
         enable_tracing=True,

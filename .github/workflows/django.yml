@@ -30,8 +30,11 @@ jobs:
           flake8
       - name: Run Tests
         run: |
+          echo "DJANGO_SECRET_KEY ${DJANGO_SECRET_KEY}"
           coverage run -m pytest
           coverage report --fail-under=80
+        with:
+          DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
   docker:
 
     needs: build-and-test
@@ -54,12 +57,10 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
+          file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/oc_lettings:${{ github.sha }},${{ secrets.DOCKERHUB_USERNAME }}/oc_lettings:latest
-          secrets: |
-            DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY}}
-            SENTRY_DSN=${{ secrets.SENTRY_DSN }}
-            
+
   deploy:
     needs: docker
     runs-on: ubuntu-latest

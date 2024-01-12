@@ -29,12 +29,12 @@ jobs:
         run: |
           flake8
       - name: Run Tests
+        with:
+          DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
         run: |
           echo "DJANGO_SECRET_KEY ${DJANGO_SECRET_KEY}"
           coverage run -m pytest
           coverage report --fail-under=80
-        with:
-          DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
   docker:
 
     needs: build-and-test

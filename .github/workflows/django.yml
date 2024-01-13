@@ -30,9 +30,8 @@ jobs:
           flake8
       - name: Run Tests
         env:
-          DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
+          DJANGO_SECRET_KEY: dummy_secret
         run: |
-          echo "DJANGO_SECRET_KEY ${DJANGO_SECRET_KEY}"
           coverage run -m pytest
           coverage report --fail-under=80
   docker:

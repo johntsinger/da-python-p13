@@ -38,4 +38,4 @@ Documents/
 .pytest_cache/
 .coverage
 *.sublime-*
-**/.secrets
+docs/

@@ -41,7 +41,8 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 # Copy the source code into the container.
 COPY . .
 
-RUN DJANGO_SECRET_KEY=dummy_secret python manage.py collectstatic --no-input
+RUN DJANGO_SECRET_KEY=dummy_secret python manage.py collectstatic --no-input \
+&& DJANGO_SECRET_KEY=dummy_secret python manage.py migrate --no-input
 
 # Switch to the non-privileged user to run the application.
 USER appuser

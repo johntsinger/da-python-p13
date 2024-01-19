@@ -154,7 +154,7 @@ to load static files locally.</p>
 <p><strong>Manually:</strong></p>
 <ol class="arabic">
 <li><p>Build the image with the Dockerfile locally (optional):</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>&lt;container_name&gt;<span class="w"> </span>.
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>&lt;image_name&gt;<span class="w"> </span>.
 </pre></div>
 </div>
 </li>
@@ -162,11 +162,11 @@ to load static files locally.</p>
 <ul>
 <li><p>Set environment variable at run time:</p>
 <p>With <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> set to <code class="docutils literal notranslate"><span class="pre">True</span></code>:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker<span class="w"> </span>run<span class="w"> </span>-e<span class="w"> </span><span class="nv">DJANGO_SECRET_KEY</span><span class="o">=</span>&lt;your_secret_key&gt;<span class="w"> </span>-e<span class="w"> </span><span class="nv">SENTRY_DSN</span><span class="o">=</span>&lt;your_sentry_dsn&gt;<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span>&lt;container_name&gt;
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker<span class="w"> </span>run<span class="w"> </span>-e<span class="w"> </span><span class="nv">DJANGO_SECRET_KEY</span><span class="o">=</span>&lt;your_secret_key&gt;<span class="w"> </span>-e<span class="w"> </span><span class="nv">SENTRY_DSN</span><span class="o">=</span>&lt;your_sentry_dsn&gt;<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span>&lt;image_name&gt;
 </pre></div>
 </div>
 <p>To set <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> to <code class="docutils literal notranslate"><span class="pre">False</span></code> add <code class="docutils literal notranslate"><span class="pre">RENDER</span></code> environment variable like this:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker<span class="w"> </span>run<span class="w"> </span>-e<span class="w"> </span><span class="nv">DJANGO_SECRET_KEY</span><span class="o">=</span>&lt;your_secret_key&gt;<span class="w"> </span>-e<span class="w"> </span><span class="nv">SENTRY_DSN</span><span class="o">=</span>&lt;your_sentry_dsn&gt;<span class="w"> </span>-e<span class="w"> </span><span class="nv">RENDER</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span>&lt;container_name&gt;
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker<span class="w"> </span>run<span class="w"> </span>-e<span class="w"> </span><span class="nv">DJANGO_SECRET_KEY</span><span class="o">=</span>&lt;your_secret_key&gt;<span class="w"> </span>-e<span class="w"> </span><span class="nv">SENTRY_DSN</span><span class="o">=</span>&lt;your_sentry_dsn&gt;<span class="w"> </span>-e<span class="w"> </span><span class="nv">RENDER</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span>&lt;image_name&gt;
 </pre></div>
 </div>
 </li>
@@ -178,7 +178,7 @@ to load static files locally.</p>
 </pre></div>
 </div>
 <p>Then run:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker<span class="w"> </span>run<span class="w"> </span>--env-file<span class="w"> </span>.env<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span>&lt;container_name&gt;
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker<span class="w"> </span>run<span class="w"> </span>--env-file<span class="w"> </span>.env<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span>&lt;image_name&gt;
 </pre></div>
 </div>
 </li>
@@ -188,7 +188,7 @@ to load static files locally.</p>
 <p>Got to <a class="reference external" href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a></p>
 <p><strong>By getting the existing image from the DockerHub:</strong></p>
 <blockquote>
-<div><p>Execute command from step 2. (Run it) using <code class="docutils literal notranslate"><span class="pre">johnsinger/oc_lettings</span></code> as <code class="docutils literal notranslate"><span class="pre">&lt;container</span> <span class="pre">name&gt;</span></code></p>
+<div><p>Execute command from step 2. (Run it) using <code class="docutils literal notranslate"><span class="pre">johnsinger/oc_lettings</span></code> as <code class="docutils literal notranslate"><span class="pre">&lt;image_name&gt;</span></code></p>
 <p>This download the latest image of the application deployed on the host (Render see <a class="reference internal" href="deploy.html#deploy"><span class="std std-ref">Deploy</span></a>).</p>
 </div></blockquote>
 </section>

@@ -84,7 +84,7 @@ There are two ways to run a Docker container locally.
 
    .. code-block:: console
 
-       $ docker build -t <container_name> .
+       $ docker build -t <image_name> .
 
 #. Run it:
 
@@ -94,13 +94,13 @@ There are two ways to run a Docker container locally.
 
      .. code-block:: console
 
-         $ docker run -e DJANGO_SECRET_KEY=<your_secret_key> -e SENTRY_DSN=<your_sentry_dsn> -d -p 8000:8000 <container_name>
+         $ docker run -e DJANGO_SECRET_KEY=<your_secret_key> -e SENTRY_DSN=<your_sentry_dsn> -d -p 8000:8000 <image_name>
 
      To set ``DEBUG`` to ``False`` add ``RENDER`` environment variable like this:
 
      .. code-block:: console
 
-         $ docker run -e DJANGO_SECRET_KEY=<your_secret_key> -e SENTRY_DSN=<your_sentry_dsn> -e RENDER='' -d -p 8000:8000 <container_name>
+         $ docker run -e DJANGO_SECRET_KEY=<your_secret_key> -e SENTRY_DSN=<your_sentry_dsn> -e RENDER='' -d -p 8000:8000 <image_name>
 
    * Or using ``.env`` file:
 
@@ -114,12 +114,12 @@ There are two ways to run a Docker container locally.
 
      .. code-block:: console
 
-         $ docker run --env-file .env -d -p 8000:8000 <container_name>
+         $ docker run --env-file .env -d -p 8000:8000 <image_name>
 
 Got to http://127.0.0.1:8000/
 
 **By getting the existing image from the DockerHub:**
 
-    Execute command from step 2. (Run it) using ``johnsinger/oc_lettings`` as ``<container name>``
+    Execute command from step 2. (Run it) using ``johnsinger/oc_lettings`` as ``<image_name>``
 
     This download the latest image of the application deployed on the host (Render see :ref:`deploy`).

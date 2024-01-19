@@ -43,6 +43,7 @@ jobs:
       matrix:
         python-version: [3.11]
 
+    if: github.ref == 'refs/heads/master'
     steps:
       - uses: actions/checkout@v3
       - name: Set up Docker Buildx
@@ -68,6 +69,7 @@ jobs:
       matrix:
         python-version: [3.11]
 
+    if: github.ref == 'refs/heads/master'
     steps:
       - uses: actions/checkout@v3
       - name: Deploy to production

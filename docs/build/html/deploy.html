@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deploy &mdash; Orange Country Lettings 1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=29a6c3e3"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="User guide" href="user-guide.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Orange Country Lettings
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="languages-and-technologies.html">Languages and technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-structure.html">Data structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programming-interface.html">Programming Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide.html">User guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Deploy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#set-github-enviroment-variables">Set GitHub enviroment variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#get-the-dockerhub-access-token">Get the DockerHub access token</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configure-render">Configure Render</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Orange Country Lettings</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Deploy</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/deploy.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="deploy">
+<span id="id1"></span><h1>Deploy<a class="headerlink" href="#deploy" title="Link to this heading"></a></h1>
+<p>This app use Render as host, Sentry to track error, GitHub for the versioning,
+GitHub Actions for the CI, and DockerHub to save the image.</p>
+<p><strong>REQUIREMENTS:</strong></p>
+<ul class="simple">
+<li><p>GitHub account</p></li>
+<li><p>Sentry account</p></li>
+<li><p>DockerHub account</p></li>
+<li><p>Render account</p></li>
+</ul>
+<p>A CI/CD pipeline is set to run 3 jobs:</p>
+<ul class="simple">
+<li><p><strong>build and test</strong> - to lint the code, run test and check coverage (must be over 80%)</p></li>
+<li><p><strong>docker</strong> - to buid the Docker image and push it to DockerHub</p></li>
+<li><p><strong>deploy</strong> - to deploy the Docker container on Render</p></li>
+</ul>
+<p>The pipeline run every job when pushed onto the master branch,
+or only the Build-and-test job when pushed onto another branch.</p>
+<p>If one job fails, the others are skiped.</p>
+<section id="set-github-enviroment-variables">
+<h2>Set GitHub enviroment variables<a class="headerlink" href="#set-github-enviroment-variables" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>On your respository go to settings</p></li>
+<li><p>Select Secrets and variables and click on Actions</p></li>
+<li><p>Click on New repository secrets</p></li>
+<li><p>Enter secret name</p></li>
+<li><p>Enter the secret</p></li>
+<li><p>Repeat 3. 4. and 5. for all secrets to be set</p></li>
+</ol>
+<p>Secrets to be set:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Secret</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DOCKERHUB_USERNAME</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;your_dockerhub_username&gt;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DOCKERHUB_TOKEN</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;your_dockerhub_token&gt;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MY_RENDER_API_KEY</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;your_render_api_key&gt;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MY_RENDER_SERVICE_ID</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;your_render_service_id&gt;</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>See below to know how to get it.</p>
+</section>
+<section id="get-the-dockerhub-access-token">
+<h2>Get the DockerHub access token<a class="headerlink" href="#get-the-dockerhub-access-token" title="Link to this heading"></a></h2>
+<p>If you don’t have a DockerHub account yet, create one.</p>
+<p>On your DockerHub account:</p>
+<ol class="arabic simple">
+<li><p>Click your profile</p></li>
+<li><p>Then on My Account</p></li>
+<li><p>Select Security</p></li>
+<li><p>And create a new token by clicking New Access Token</p></li>
+<li><p>Add the token to your GitHub secrets with name <code class="docutils literal notranslate"><span class="pre">DOCKERHUB_TOKEN</span></code></p></li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The DockerHub Access Token can be view only one time at the creation !
+If you loose it you need to generate a new one.</p>
+</div>
+</section>
+<section id="configure-render">
+<h2>Configure Render<a class="headerlink" href="#configure-render" title="Link to this heading"></a></h2>
+<p>If you don’t have a Render account yet, create one.</p>
+<p>On your render dashbord:</p>
+<ol class="arabic">
+<li><p>Click on New + and select Web Service</p></li>
+<li><p>Select option Build and deploy from a Git repository</p></li>
+<li><p>Connect yout GitHub account</p></li>
+<li><p>Configure your service by setting:</p>
+<blockquote>
+<div><ul>
+<li><p>Name: Choose a name</p></li>
+<li><p>Region: Choose your region</p></li>
+<li><p>Runtime: set Docker</p></li>
+<li><p>Set environment variables:</p>
+<blockquote>
+<div><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">DJANGO_SECRET_KEY</span></code>: <code class="docutils literal notranslate"><span class="pre">&lt;your_django_secret_key&gt;</span></code></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<div class="line-block">
+<div class="line">Django can <strong>NOT</strong> start without a secret key.</div>
+<div class="line">If the secret key is missing it will raise</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">ImproperlyConfigured:</span> <span class="pre">The</span> <span class="pre">SECRET_KEY</span> <span class="pre">setting</span> <span class="pre">must</span> <span class="pre">not</span> <span class="pre">be</span> <span class="pre">empty.</span></code></div>
+</div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SENTRY_DSN</span></code>: <code class="docutils literal notranslate"><span class="pre">&lt;your_sentry_dsn&gt;</span></code></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Click on Advanced:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Set Dockerfile Path to: <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code></p></li>
+<li><p>Set Auto-Deploy to: <code class="docutils literal notranslate"><span class="pre">No</span></code></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Click Create Web Service</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Get the api key:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>On your profile select Account Settings</p></li>
+<li><p>Under API Keys select Create API key</p></li>
+<li><p>Add the API key to your GitHub secrets with the name <code class="docutils literal notranslate"><span class="pre">MY_RENDER_API_KEY</span></code></p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The Render API key can be view only one time at the creation !
+If you loose it you need to generate a new one.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p>Get the service id:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>On your dashboard select your service</p></li>
+<li><p>When viewing a service in the Render dashboard grab this value from the URL - it will start with <code class="docutils literal notranslate"><span class="pre">srv-</span></code></p></li>
+<li><p>Add the service id to your GitHub secrets with the name <code class="docutils literal notranslate"><span class="pre">MY_RENDER_SERVICE_ID</span></code></p></li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="user-guide.html" class="btn btn-neutral float-left" title="User guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, John.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

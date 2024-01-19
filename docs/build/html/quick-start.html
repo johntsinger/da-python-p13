@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quick Start &mdash; Orange Country Lettings 1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=29a6c3e3"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Languages and technologies" href="languages-and-technologies.html" />
+    <link rel="prev" title="Installation guide" href="install.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Orange Country Lettings
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#testing">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#linting">Linting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#docker">Docker</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="languages-and-technologies.html">Languages and technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-structure.html">Data structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programming-interface.html">Programming Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide.html">User guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deploy.html">Deploy</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Orange Country Lettings</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Quick Start</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/quick-start.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="quick-start">
+<h1>Quick Start<a class="headerlink" href="#quick-start" title="Link to this heading"></a></h1>
+<p><strong>REQUIREMENTS:</strong></p>
+<p><em>The following are not required for development, but since a CI/CD pipeline is set,
+it’s highly recommended to have it otherwise the pipeline will fail when you push your code to your GitHub repository.</em></p>
+<ul class="simple">
+<li><p>GitHub account</p></li>
+<li><p>Sentry account</p></li>
+<li><p>DockerHub account</p></li>
+<li><p>Render account</p></li>
+</ul>
+<p>After following the installation instructions (see <a class="reference internal" href="install.html#install"><span class="std std-ref">Installation guide</span></a>) you can run the django server locally.</p>
+<ol class="arabic">
+<li><p>Activate virtual environment if not already activated (see <a class="reference internal" href="install.html#virtual-env"><span class="std std-ref">3. Virtual Environment</span></a>).</p></li>
+<li><p>Create a file named <code class="docutils literal notranslate"><span class="pre">.env</span></code> at the root folder to store environment varibales.</p></li>
+<li><p>Add environment variables into the <code class="docutils literal notranslate"><span class="pre">.env</span></code> file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DJANGO_SECRET_KEY</span><span class="o">=&lt;</span><span class="n">your_secret_key</span><span class="o">&gt;</span> <span class="p">(</span><span class="n">required</span><span class="p">)</span>
+<span class="n">SENTRY_DSN</span><span class="o">=&lt;</span><span class="n">your_sentry_dsn</span><span class="o">&gt;</span> <span class="p">(</span><span class="n">optional</span><span class="p">)</span>
+<span class="n">RENDER</span><span class="o">=</span><span class="s1">&#39;&#39;</span> <span class="p">(</span><span class="n">optional</span> <span class="n">use</span> <span class="n">it</span> <span class="n">to</span> <span class="nb">set</span> <span class="n">DEBUG</span> <span class="n">to</span> <span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Run the local server:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python<span class="w"> </span>manage.py<span class="w"> </span>runserver
+</pre></div>
+</div>
+</li>
+<li><p>Go to <a class="reference external" href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a></p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When running local server, <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> is set to <code class="docutils literal notranslate"><span class="pre">True</span></code> by default.
+If you want to set it to False you can:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>add <code class="docutils literal notranslate"><span class="pre">RENDER=''</span></code> in <code class="docutils literal notranslate"><span class="pre">.env</span></code> file.
+(since the site uses Render for deployment)</p></li>
+</ul>
+</div></blockquote>
+<p>Then run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">python</span> <span class="pre">manage.py</span> <span class="pre">runserver</span> <span class="pre">--insecure</span></code>
+to load static files locally.</p>
+</div>
+<section id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Link to this heading"></a></h2>
+<p>To run tests:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pytest
+</pre></div>
+</div>
+<p>To update coverage:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>coverage<span class="w"> </span>run<span class="w"> </span>-m<span class="w"> </span>pytest
+</pre></div>
+</div>
+<p>To get coverage html:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>coverage<span class="w"> </span>html
+</pre></div>
+</div>
+</section>
+<section id="linting">
+<h2>Linting<a class="headerlink" href="#linting" title="Link to this heading"></a></h2>
+<p>To run linting:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>flake8
+</pre></div>
+</div>
+</section>
+<section id="docker">
+<h2>Docker<a class="headerlink" href="#docker" title="Link to this heading"></a></h2>
+<p>There are two ways to run a Docker container locally.</p>
+<p><strong>Manually:</strong></p>
+<ol class="arabic">
+<li><p>Build the image with the Dockerfile locally (optional):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>&lt;container_name&gt;<span class="w"> </span>.
+</pre></div>
+</div>
+</li>
+<li><p>Run it:</p>
+<ul>
+<li><p>Set environment variable at run time:</p>
+<p>With <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> set to <code class="docutils literal notranslate"><span class="pre">True</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker<span class="w"> </span>run<span class="w"> </span>-e<span class="w"> </span><span class="nv">DJANGO_SECRET_KEY</span><span class="o">=</span>&lt;your_secret_key&gt;<span class="w"> </span>-e<span class="w"> </span><span class="nv">SENTRY_DSN</span><span class="o">=</span>&lt;your_sentry_dsn&gt;<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span>&lt;container_name&gt;
+</pre></div>
+</div>
+<p>To set <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> to <code class="docutils literal notranslate"><span class="pre">False</span></code> add <code class="docutils literal notranslate"><span class="pre">RENDER</span></code> environment variable like this:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker<span class="w"> </span>run<span class="w"> </span>-e<span class="w"> </span><span class="nv">DJANGO_SECRET_KEY</span><span class="o">=</span>&lt;your_secret_key&gt;<span class="w"> </span>-e<span class="w"> </span><span class="nv">SENTRY_DSN</span><span class="o">=</span>&lt;your_sentry_dsn&gt;<span class="w"> </span>-e<span class="w"> </span><span class="nv">RENDER</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span>&lt;container_name&gt;
+</pre></div>
+</div>
+</li>
+<li><p>Or using <code class="docutils literal notranslate"><span class="pre">.env</span></code> file:</p>
+<p>Create a <code class="docutils literal notranslate"><span class="pre">.env</span></code> file at the root folder with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DJANGO_SECRET_KEY</span><span class="o">=&lt;</span><span class="n">your_secret_key</span><span class="o">&gt;</span> <span class="p">(</span><span class="n">required</span><span class="p">)</span>
+<span class="n">SENTRY_DSN</span><span class="o">=&lt;</span><span class="n">your_sentry_dsn</span><span class="o">&gt;</span> <span class="p">(</span><span class="n">optional</span><span class="p">)</span>
+<span class="n">RENDER</span><span class="o">=</span><span class="s1">&#39;&#39;</span> <span class="p">(</span><span class="n">optional</span> <span class="n">use</span> <span class="n">it</span> <span class="n">to</span> <span class="nb">set</span> <span class="n">DEBUG</span> <span class="n">to</span> <span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then run:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker<span class="w"> </span>run<span class="w"> </span>--env-file<span class="w"> </span>.env<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span>&lt;container_name&gt;
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ol>
+<p>Got to <a class="reference external" href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a></p>
+<p><strong>By getting the existing image from the DockerHub:</strong></p>
+<blockquote>
+<div><p>Execute command from step 2. (Run it) using <code class="docutils literal notranslate"><span class="pre">johnsinger/oc_lettings</span></code> as <code class="docutils literal notranslate"><span class="pre">&lt;container</span> <span class="pre">name&gt;</span></code></p>
+<p>This download the latest image of the application deployed on the host (Render see <a class="reference internal" href="deploy.html#deploy"><span class="std std-ref">Deploy</span></a>).</p>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="install.html" class="btn btn-neutral float-left" title="Installation guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="languages-and-technologies.html" class="btn btn-neutral float-right" title="Languages and technologies" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, John.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

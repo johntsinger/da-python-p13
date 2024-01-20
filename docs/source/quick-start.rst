@@ -19,11 +19,13 @@ After following the installation instructions (see :ref:`install`) you can run t
 
 #. Create a file named ``.env`` at the root folder to store environment varibales.
 
-#. Add environment variables into the ``.env`` file::
+#. Add environment variables into the ``.env`` file:
 
-    DJANGO_SECRET_KEY=<your_secret_key> (required)
-    SENTRY_DSN=<your_sentry_dsn> (optional)
-    RENDER='' (optional use it to set DEBUG to False)
+    .. parsed-literal::
+
+        DJANGO_SECRET_KEY=<your_secret_key> (**Required**)
+        SENTRY_DSN=<your_sentry_dsn> (Optional see :ref:`sentry`)
+        RENDER='' (Optional use it to set DEBUG to False)
 
 #. Run the local server:
 
@@ -35,10 +37,8 @@ After following the installation instructions (see :ref:`install`) you can run t
 
 .. note::
     When running local server, ``DEBUG`` is set to ``True`` by default.
-    If you want to set it to False you can:
-
-        - add ``RENDER=''`` in ``.env`` file.
-          (since the site uses Render for deployment)
+    If you want to set it to False you can add ``RENDER=''`` in ``.env`` file.
+    (since the site uses Render for deployment)
 
     Then run ``$ python manage.py runserver --insecure``
     to load static files locally.
@@ -73,6 +73,31 @@ To run linting:
 
     $ flake8
 
+.. _sentry:
+
+Sentry
+------
+
+You can enable Sentry to track errors. To do that you need to have a Sentry account and a project configured.
+
+.. note::
+
+    Sentry is NOT activated when ``DEBUG`` is set to ``True`` (during development).
+
+To activate it during development, do the following :
+
+#. Get your Sentry DSN (see `Where to Find Your DSN <https://docs.sentry.io/product/sentry-basics/concepts/dsn-explainer/#where-to-find-your-dsn>`_).
+
+#. Add ``SENTRY_DSN=<your_sentry_dsn>`` to the ``.env`` file.
+
+#. Add ``RENDER=''`` in the ``.env`` file to set ``DEBUG`` to ``False``.
+
+#. Run Django local server with ``python manage.py runserver --insecure``
+
+#. Test sending an error by going to http://127.0.0.1:8000/sentry-debug/
+
+#. You can find the report on your Sentry Issues.
+
 Docker
 ------
 
@@ -88,27 +113,29 @@ There are two ways to run a Docker container locally.
 
 #. Run it:
 
-   * Set environment variable at run time:
+   * Set environment variables:
 
-     With ``DEBUG`` set to ``True``:
+     With ``DEBUG`` set to ``True`` and NOT using Sentry:
 
      .. code-block:: console
 
-         $ docker run -e DJANGO_SECRET_KEY=<your_secret_key> -e SENTRY_DSN=<your_sentry_dsn> -d -p 8000:8000 <image_name>
+         $ docker run -e DJANGO_SECRET_KEY=<your_secret_key> -d -p 8000:8000 <image_name>
 
-     To set ``DEBUG`` to ``False`` add ``RENDER`` environment variable like this:
+     To set ``DEBUG`` to ``False`` and ACTIVATE Sentry, add ``SENTRY_DSN`` and ``RENDER`` environment variable as follows:
 
      .. code-block:: console
 
          $ docker run -e DJANGO_SECRET_KEY=<your_secret_key> -e SENTRY_DSN=<your_sentry_dsn> -e RENDER='' -d -p 8000:8000 <image_name>
 
-   * Or using ``.env`` file:
+   * Or read environment variables from a file:
 
-     Create a ``.env`` file at the root folder with::
+     Create a ``.env`` file at the root folder with:
 
-       DJANGO_SECRET_KEY=<your_secret_key> (required)
-       SENTRY_DSN=<your_sentry_dsn> (optional)
-       RENDER='' (optional use it to set DEBUG to False)
+     .. parsed-literal::
+
+           DJANGO_SECRET_KEY=<your_secret_key> (**Required**)
+           SENTRY_DSN=<your_sentry_dsn> (Optional see :ref:`sentry`)
+           RENDER='' (Optional use it to set DEBUG to False)
 
      Then run:
 

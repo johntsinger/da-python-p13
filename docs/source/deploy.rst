@@ -108,6 +108,10 @@ On your render dashbord:
 
         * ``SENTRY_DSN``: ``<your_sentry_dsn>``
 
+          .. note::
+
+             To get your Sentry DSN see `Where to Find Your DSN <https://docs.sentry.io/product/sentry-basics/concepts/dsn-explainer/#where-to-find-your-dsn>`_
+
     * Click on Advanced:
 
         * Set Dockerfile Path to: ``Dockerfile``

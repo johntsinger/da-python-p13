@@ -32,3 +32,7 @@ A CI/CD pipeline is set to build and test the application then create a Docker i
 For the other branches, only the build-and-test job is run.
 
 For more information on deployment and configuration, visit https://ocl.readthedocs.io/en/latest/deploy.html.
+
+## Contact :
+Jonathan Singer - john.t.singer@gmail.com\
+Project link : https://github.com/johntsinger/da-python-p13

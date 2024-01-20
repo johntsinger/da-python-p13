@@ -20,15 +20,15 @@ RUN python -m pip install --upgrade pip
 
 # Create a non-privileged user that the app will run under.
 # See https://docs.docker.com/go/dockerfile-user-best-practices/
-ARG UID=10001
-RUN adduser \
-    --disabled-password \
-    --gecos "" \
-    --home "/nonexistent" \
-    --shell "/sbin/nologin" \
-    --no-create-home \
-    --uid "${UID}" \
-    appuser
+#ARG UID=10001
+#RUN adduser \
+#    --disabled-password \
+#    --gecos "" \
+#    --home "/nonexistent" \
+#    --shell "/sbin/nologin" \
+#    --no-create-home \
+#    --uid "${UID}" \
+#    appuser
 
 # Download dependencies as a separate step to take advantage of Docker's caching.
 # Leverage a cache mount to /root/.cache/pip to speed up subsequent builds.
@@ -45,7 +45,7 @@ RUN DJANGO_SECRET_KEY=dummy_secret python manage.py collectstatic --no-input \
 && DJANGO_SECRET_KEY=dummy_secret python manage.py migrate --no-input
 
 # Switch to the non-privileged user to run the application.
-USER appuser
+#USER appuser
 
 # Expose the port that the application listens on.
 EXPOSE 8000

@@ -68,19 +68,12 @@ jobs:
   deploy:
     needs: docker
     runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 4
-      matrix:
-        python-version: [3.11]
 
     if: github.ref == 'refs/heads/master'
     steps:
-      - uses: actions/checkout@v3
       - name: Deploy to production
         uses: johnbeynon/render-deploy-action@v0.0.8
         with:
           service-id: ${{ secrets.MY_RENDER_SERVICE_ID }}
           api-key: ${{ secrets.MY_RENDER_API_KEY }}
           wait-for-success: true
-      
-

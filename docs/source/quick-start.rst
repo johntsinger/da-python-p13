@@ -33,7 +33,7 @@ After following the installation instructions (see :ref:`install`) you can run t
 
        $ python manage.py runserver
 
-#. Go to http://127.0.0.1:8000/
+#. Go to http://localhost:8000/
 
 .. note::
     When running local server, ``DEBUG`` is set to ``True`` by default.
@@ -94,7 +94,7 @@ To activate it during development, do the following :
 
 #. Run Django local server with ``python manage.py runserver --insecure``
 
-#. Test sending an error by going to http://127.0.0.1:8000/sentry-debug/
+#. Test sending an error by going to http://localhost:8000/sentry-debug/
 
 #. You can find the report on your Sentry Issues.
 
@@ -143,7 +143,7 @@ There are two ways to run a Docker container locally.
 
          $ docker run --env-file .env -d -p 8000:8000 <image_name>
 
-Got to http://127.0.0.1:8000/
+Got to http://localhost:8000/
 
 **By getting the existing image from the DockerHub:**
 

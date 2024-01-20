@@ -39,3 +39,5 @@ Documents/
 .coverage
 *.sublime-*
 docs/
+.github/
+.readthedocs.yaml

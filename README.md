@@ -10,28 +10,31 @@ You can find the full documentation at https://ocl.readthedocs.io/en/latest/inde
 
 ## Original project
 
-Get a quick look at the original project and read the README.md
+Get a quick look at the original project [Python-OC-Lettings-FR](https://github.com/OpenClassrooms-Student-Center/Python-OC-Lettings-FR).
 
-https://github.com/OpenClassrooms-Student-Center/Python-OC-Lettings-FR
+Get the [Original project's README.md](README.original.md).
 
-## Quick start
-
-This app use Render as host, Sentry to track error, GitHub Actions for the CI, and DockerHub to save the image.
+## Local use
 
 #### Install the project
 
-Follow installation instructions at https://ocl.readthedocs.io/en/latest/install.html
+To install the project, follow the [Installation instructions](docs/source/install.rst).
 
-#### Local use
+#### Run app locally
 
-All you need to know to run the local server at https://ocl.readthedocs.io/en/latest/quick-start.html
+All you need to know to [Run the app locally](docs/source/quick-start.rst).
 
-#### Deploy
+## Deployment
 
-A CI/CD pipeline is set to build and test the application then create a Docker image and push it to DockerHub and finally deploy the site on Render at every push on master branch.
-For the other branches, only the build-and-test job is run.
+This app use Render as host, GitHub Actions for the CI, DockerHub to save the image, and Sentry to track errors.
 
-For more information on deployment and configuration, visit https://ocl.readthedocs.io/en/latest/deploy.html.
+Follow the instructions to know how to configure and run the [CI/CD pipeline](docs/source/deploy.rst).
+
+## Admin panel
+
+Go to `http://localhost:8000/admin`
+
+Log in with username `admin`, password `Abc1234!`
 
 ## Contact :
 Jonathan Singer - john.t.singer@gmail.com\

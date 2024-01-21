@@ -94,7 +94,7 @@ To activate it during development, do the following :
 
 #. Run Django local server with ``python manage.py runserver --insecure``
 
-#. Test sending an error by going to http://127.0.0.1:8000/sentry-debug/
+#. Test sending an error by going to http://localhost:8000/sentry-debug/
 
 #. You can find the report on your Sentry Issues.
 

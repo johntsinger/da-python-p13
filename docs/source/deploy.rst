@@ -29,6 +29,8 @@ If one job fails, the others are skiped.
 Set GitHub enviroment variables
 -------------------------------
 
+If you don't have a GitHub account yet, create one.
+
 #. On your respository go to settings
 
 #. Select Secrets and variables and click on Actions
@@ -76,6 +78,22 @@ On your DockerHub account:
 
     The DockerHub Access Token can be view only one time at the creation !
     If you loose it you need to generate a new one.
+
+
+Configure Sentry
+----------------
+
+If you don't have a Sentry account yet, create one.
+
+On your dashboard
+
+#. Select Projects
+
+#. Click on Create project
+
+#. Configure the project
+
+#. Get the DSN
 
 
 Configure Render

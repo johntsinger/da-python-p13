@@ -54,6 +54,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Deploy</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#set-github-enviroment-variables">Set GitHub enviroment variables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#get-the-dockerhub-access-token">Get the DockerHub access token</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configure-sentry">Configure Sentry</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#configure-render">Configure Render</a></li>
 </ul>
 </li>
@@ -105,6 +106,7 @@ or only the Build-and-test job when pushed onto another branch.</p>
 <p>If one job fails, the others are skiped.</p>
 <section id="set-github-enviroment-variables">
 <h2>Set GitHub enviroment variables<a class="headerlink" href="#set-github-enviroment-variables" title="Link to this heading"></a></h2>
+<p>If you don’t have a GitHub account yet, create one.</p>
 <ol class="arabic simple">
 <li><p>On your respository go to settings</p></li>
 <li><p>Select Secrets and variables and click on Actions</p></li>
@@ -153,6 +155,17 @@ or only the Build-and-test job when pushed onto another branch.</p>
 <p>The DockerHub Access Token can be view only one time at the creation !
 If you loose it you need to generate a new one.</p>
 </div>
+</section>
+<section id="configure-sentry">
+<h2>Configure Sentry<a class="headerlink" href="#configure-sentry" title="Link to this heading"></a></h2>
+<p>If you don’t have a Sentry account yet, create one.</p>
+<p>On your dashboard</p>
+<ol class="arabic simple">
+<li><p>Select Projects</p></li>
+<li><p>Click on Create project</p></li>
+<li><p>Configure the project</p></li>
+<li><p>Get the DSN</p></li>
+</ol>
 </section>
 <section id="configure-render">
 <h2>Configure Render<a class="headerlink" href="#configure-render" title="Link to this heading"></a></h2>

@@ -9,10 +9,10 @@ GitHub Actions for the CI, and DockerHub to save the image.
 
 **REQUIREMENTS:**
 
-- GitHub account
-- Sentry account
-- DockerHub account
-- Render account
+- `GitHub account <https://github.com/>`_
+- `Sentry account <https://sentry.io/>`_
+- `DockerHub account <https://hub.docker.com/>`_
+- `Render account <https://render.com/>`_
 
 A CI/CD pipeline is set to run 3 jobs:
 
@@ -29,7 +29,7 @@ If one job fails, the others are skiped.
 Set GitHub enviroment variables
 -------------------------------
 
-If you don't have a GitHub account yet, create one.
+If you don't have a `GitHub <https://github.com/>`_ account yet, create one.
 
 #. On your respository go to settings
 
@@ -60,7 +60,7 @@ See below to know how to get it.
 Get the DockerHub access token
 ------------------------------
 
-If you don't have a DockerHub account yet, create one.
+If you don't have a `DockerHub <https://hub.docker.com/>`_ account yet, create one.
 
 On your DockerHub account:
 
@@ -83,7 +83,7 @@ On your DockerHub account:
 Configure Sentry
 ----------------
 
-If you don't have a Sentry account yet, create one.
+If you don't have a `Sentry <https://sentry.io/>`_ account yet, create one.
 
 On your dashboard
 
@@ -99,7 +99,7 @@ On your dashboard
 Configure Render
 ----------------
 
-If you don't have a Render account yet, create one.
+If you don't have a `Render <https://render.com/>`_ account yet, create one.
 
 On your render dashbord:
 

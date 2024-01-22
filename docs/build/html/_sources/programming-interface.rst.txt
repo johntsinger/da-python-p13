@@ -2,10 +2,6 @@
 Programming Interface
 =====================
 
-| **Base URL**
-|   Development server: http://localhost:8000/
-|   Hosted on Render: https://oc-lettings-f53h.onrender.com/
-
 Endpoints:
 
 ==============================  ================================

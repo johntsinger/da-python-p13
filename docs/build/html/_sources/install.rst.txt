@@ -17,7 +17,7 @@ or
 
 Download the repository:
 
-    * On the [project page](https://github.com/johntsinger/da-python-p13)
+    * On the `project page <https://github.com/johntsinger/da-python-p13>`_
     * Click on green Code button
     * Click on download ZIP
     * Extract the file.

@@ -4,8 +4,6 @@
 
 Orange County Lettings is a start-up in the property rental sector. The start-up is currently expanding in the United States. You’ll find a variety of rental properties and some profiles.
 
-The site is hosted at https://oc-lettings-f53h.onrender.com
-
 You can find the full documentation at https://ocl.readthedocs.io/en/latest/index.html
 
 ## Original project

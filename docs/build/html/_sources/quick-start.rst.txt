@@ -25,7 +25,17 @@ After following the installation instructions (see :ref:`install`) you can run t
 
         DJANGO_SECRET_KEY=<your_secret_key> (**Required**)
         SENTRY_DSN=<your_sentry_dsn> (Optional see :ref:`sentry`)
-        RENDER='' (Optional use it to set DEBUG to False)
+        DEBUG=False (Optional use it to set DEBUG to False)
+
+    .. note::
+        When running local server, ``DEBUG`` is set to ``True`` by default.
+        If you want to set it to ``False`` you can add ``DEBUG=False`` in ``.env`` file.
+
+        Value allowed are ``False``, ``false``, ``FALSE`` or ``0``, each other value or not adding ``DEBUG`` in the ``.env`` file
+        is equivalent to ``DEBUG=True``.
+
+        Then run ``$ python manage.py runserver --insecure``
+        to load static files locally.
 
 #. Run the local server:
 
@@ -35,13 +45,6 @@ After following the installation instructions (see :ref:`install`) you can run t
 
 #. Go to http://localhost:8000/
 
-.. note::
-    When running local server, ``DEBUG`` is set to ``True`` by default.
-    If you want to set it to False you can add ``RENDER=''`` in ``.env`` file.
-    (since the site uses Render for deployment)
-
-    Then run ``$ python manage.py runserver --insecure``
-    to load static files locally.
 
 Testing
 -------
@@ -90,7 +93,7 @@ To activate it during development, do the following :
 
 #. Add ``SENTRY_DSN=<your_sentry_dsn>`` to the ``.env`` file.
 
-#. Add ``RENDER=''`` in the ``.env`` file to set ``DEBUG`` to ``False``.
+#. Add ``DEBUG=False`` in the ``.env`` file to set ``DEBUG`` to ``False``.
 
 #. Run Django local server with ``python manage.py runserver --insecure``
 
@@ -115,17 +118,17 @@ There are two ways to run a Docker container locally.
 
    * Set environment variables:
 
-     With ``DEBUG`` set to ``True`` and NOT using Sentry:
+     With ``DEBUG`` set to ``True`` and **NOT** using Sentry:
 
      .. code-block:: console
 
          $ docker run -e DJANGO_SECRET_KEY=<your_secret_key> -d -p 8000:8000 <image_name>
 
-     To set ``DEBUG`` to ``False`` and ACTIVATE Sentry, add ``SENTRY_DSN`` and ``RENDER`` environment variable as follows:
+     To set ``DEBUG`` to ``False`` and **ACTIVATE** Sentry, add ``SENTRY_DSN`` and ``DEBUG`` environment variables as follows:
 
      .. code-block:: console
 
-         $ docker run -e DJANGO_SECRET_KEY=<your_secret_key> -e SENTRY_DSN=<your_sentry_dsn> -e RENDER='' -d -p 8000:8000 <image_name>
+         $ docker run -e DJANGO_SECRET_KEY=<your_secret_key> -e SENTRY_DSN=<your_sentry_dsn> -e DEBUG=False -d -p 8000:8000 <image_name>
 
    * Or read environment variables from a file:
 
@@ -135,7 +138,7 @@ There are two ways to run a Docker container locally.
 
            DJANGO_SECRET_KEY=<your_secret_key> (**Required**)
            SENTRY_DSN=<your_sentry_dsn> (Optional see :ref:`sentry`)
-           RENDER='' (Optional use it to set DEBUG to False)
+           DEBUG=False (Optional use it to set DEBUG to False)
 
      Then run:
 

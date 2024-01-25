@@ -104,7 +104,16 @@ it’s highly recommended to have it otherwise the pipeline will fail when you p
 <blockquote>
 <div><pre class="literal-block">DJANGO_SECRET_KEY=&lt;your_secret_key&gt; (<strong>Required</strong>)
 SENTRY_DSN=&lt;your_sentry_dsn&gt; (Optional see <a class="reference internal" href="#sentry"><span class="std std-ref">Sentry</span></a>)
-RENDER='' (Optional use it to set DEBUG to False)</pre>
+DEBUG=False (Optional use it to set DEBUG to False)</pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When running local server, <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> is set to <code class="docutils literal notranslate"><span class="pre">True</span></code> by default.
+If you want to set it to <code class="docutils literal notranslate"><span class="pre">False</span></code> you can add <code class="docutils literal notranslate"><span class="pre">DEBUG=False</span></code> in <code class="docutils literal notranslate"><span class="pre">.env</span></code> file.</p>
+<p>Value allowed are <code class="docutils literal notranslate"><span class="pre">False</span></code>, <code class="docutils literal notranslate"><span class="pre">false</span></code>, <code class="docutils literal notranslate"><span class="pre">FALSE</span></code> or <code class="docutils literal notranslate"><span class="pre">0</span></code>, each other value or not adding <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> in the <code class="docutils literal notranslate"><span class="pre">.env</span></code> file
+is equivalent to <code class="docutils literal notranslate"><span class="pre">DEBUG=True</span></code>.</p>
+<p>Then run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">python</span> <span class="pre">manage.py</span> <span class="pre">runserver</span> <span class="pre">--insecure</span></code>
+to load static files locally.</p>
+</div>
 </div></blockquote>
 </li>
 <li><p>Run the local server:</p>
@@ -114,14 +123,6 @@ RENDER='' (Optional use it to set DEBUG to False)</pre>
 </li>
 <li><p>Go to <a class="reference external" href="http://localhost:8000/">http://localhost:8000/</a></p></li>
 </ol>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>When running local server, <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> is set to <code class="docutils literal notranslate"><span class="pre">True</span></code> by default.
-If you want to set it to False you can add <code class="docutils literal notranslate"><span class="pre">RENDER=''</span></code> in <code class="docutils literal notranslate"><span class="pre">.env</span></code> file.
-(since the site uses Render for deployment)</p>
-<p>Then run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">python</span> <span class="pre">manage.py</span> <span class="pre">runserver</span> <span class="pre">--insecure</span></code>
-to load static files locally.</p>
-</div>
 <section id="testing">
 <h2>Testing<a class="headerlink" href="#testing" title="Link to this heading"></a></h2>
 <p>To run tests:</p>
@@ -155,7 +156,7 @@ to load static files locally.</p>
 <ol class="arabic simple">
 <li><p>Get your Sentry DSN (see <a class="reference external" href="https://docs.sentry.io/product/sentry-basics/concepts/dsn-explainer/#where-to-find-your-dsn">Where to Find Your DSN</a>).</p></li>
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">SENTRY_DSN=&lt;your_sentry_dsn&gt;</span></code> to the <code class="docutils literal notranslate"><span class="pre">.env</span></code> file.</p></li>
-<li><p>Add <code class="docutils literal notranslate"><span class="pre">RENDER=''</span></code> in the <code class="docutils literal notranslate"><span class="pre">.env</span></code> file to set <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">DEBUG=False</span></code> in the <code class="docutils literal notranslate"><span class="pre">.env</span></code> file to set <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
 <li><p>Run Django local server with <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">manage.py</span> <span class="pre">runserver</span> <span class="pre">--insecure</span></code></p></li>
 <li><p>Test sending an error by going to <a class="reference external" href="http://localhost:8000/sentry-debug/">http://localhost:8000/sentry-debug/</a></p></li>
 <li><p>You can find the report on your Sentry Issues.</p></li>
@@ -174,12 +175,12 @@ to load static files locally.</p>
 <li><p>Run it:</p>
 <ul>
 <li><p>Set environment variables:</p>
-<p>With <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> set to <code class="docutils literal notranslate"><span class="pre">True</span></code> and NOT using Sentry:</p>
+<p>With <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> set to <code class="docutils literal notranslate"><span class="pre">True</span></code> and <strong>NOT</strong> using Sentry:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker<span class="w"> </span>run<span class="w"> </span>-e<span class="w"> </span><span class="nv">DJANGO_SECRET_KEY</span><span class="o">=</span>&lt;your_secret_key&gt;<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span>&lt;image_name&gt;
 </pre></div>
 </div>
-<p>To set <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> to <code class="docutils literal notranslate"><span class="pre">False</span></code> and ACTIVATE Sentry, add <code class="docutils literal notranslate"><span class="pre">SENTRY_DSN</span></code> and <code class="docutils literal notranslate"><span class="pre">RENDER</span></code> environment variable as follows:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker<span class="w"> </span>run<span class="w"> </span>-e<span class="w"> </span><span class="nv">DJANGO_SECRET_KEY</span><span class="o">=</span>&lt;your_secret_key&gt;<span class="w"> </span>-e<span class="w"> </span><span class="nv">SENTRY_DSN</span><span class="o">=</span>&lt;your_sentry_dsn&gt;<span class="w"> </span>-e<span class="w"> </span><span class="nv">RENDER</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span>&lt;image_name&gt;
+<p>To set <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> to <code class="docutils literal notranslate"><span class="pre">False</span></code> and <strong>ACTIVATE</strong> Sentry, add <code class="docutils literal notranslate"><span class="pre">SENTRY_DSN</span></code> and <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> environment variables as follows:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker<span class="w"> </span>run<span class="w"> </span>-e<span class="w"> </span><span class="nv">DJANGO_SECRET_KEY</span><span class="o">=</span>&lt;your_secret_key&gt;<span class="w"> </span>-e<span class="w"> </span><span class="nv">SENTRY_DSN</span><span class="o">=</span>&lt;your_sentry_dsn&gt;<span class="w"> </span>-e<span class="w"> </span><span class="nv">DEBUG</span><span class="o">=</span>False<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span>&lt;image_name&gt;
 </pre></div>
 </div>
 </li>
@@ -187,7 +188,7 @@ to load static files locally.</p>
 <p>Create a <code class="docutils literal notranslate"><span class="pre">.env</span></code> file at the root folder with:</p>
 <pre class="literal-block">DJANGO_SECRET_KEY=&lt;your_secret_key&gt; (<strong>Required</strong>)
 SENTRY_DSN=&lt;your_sentry_dsn&gt; (Optional see <a class="reference internal" href="#sentry"><span class="std std-ref">Sentry</span></a>)
-RENDER='' (Optional use it to set DEBUG to False)</pre>
+DEBUG=False (Optional use it to set DEBUG to False)</pre>
 <p>Then run:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker<span class="w"> </span>run<span class="w"> </span>--env-file<span class="w"> </span>.env<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span>&lt;image_name&gt;
 </pre></div>

@@ -1,6 +1,5 @@
 from django.test import TestCase, Client
 from django.urls import reverse_lazy, path
-from django.conf import settings
 from django.test.utils import override_settings
 from oc_lettings_site import views
 from oc_lettings_site.urls import urlpatterns as all_urls
@@ -19,21 +18,8 @@ urlpatterns = all_urls + [
 # overide WHITENOISE_AUTOREFRESH to avoid getting warnings about
 # 'No directory at {}' for STATIC_ROOT directory
 @override_settings(WHITENOISE_AUTOREFRESH=True)
-class BaseTestCase(TestCase):
-    """
-    Custom TestCase class with fixtures.
-    """
-    @classmethod
-    def setUpClass(cls):
-        """
-        Class level test data.
-        """
-        super().setUpClass()
-        settings.TESTING = True
-
-
 @override_settings(ROOT_URLCONF=__name__)
-class TestOCLettingsSiteViews(BaseTestCase):
+class TestOCLettingsSiteViews(TestCase):
     """
     OC_lettings_site views test class.
     """

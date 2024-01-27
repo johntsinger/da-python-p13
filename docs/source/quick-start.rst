@@ -4,13 +4,15 @@ Quick Start
 
 **REQUIREMENTS:**
 
+* `Docker <https://www.docker.com/>`_
+
 *The following are not required for development, but since a CI/CD pipeline is set,
 it's highly recommended to have it otherwise the pipeline will fail when you push your code to your GitHub repository.*
 
-* GitHub account
-* Sentry account
-* DockerHub account
-* Render account
+* `GitHub account <https://github.com/>`_
+* `Sentry account <https://sentry.io/>`_
+* `DockerHub account <https://hub.docker.com/>`_
+* `Render account <https://render.com/>`_
 
 
 After following the installation instructions (see :ref:`install`) you can run the django server locally.
@@ -103,6 +105,8 @@ To activate it during development, do the following :
 
 Docker
 ------
+
+This part **REQUIRES** `Docker <https://www.docker.com/>`_ to be installed and running.
 
 There are two ways to run a Docker container locally.
 

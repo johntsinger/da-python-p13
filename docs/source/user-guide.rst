@@ -12,6 +12,10 @@ From the home page you can access :
 
   * Click on a letting to view details.
 
+  * Click on Home to return to the home page.
+
 * The list of all profiles by clicking on profiles button.
 
   * Click on a profile to view details.
+
+  * Click on Home to return to the home page.
